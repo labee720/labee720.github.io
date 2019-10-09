@@ -103,7 +103,7 @@
 <meta property="og:image" content="http://yoursite.com/images/lamp/15.png">
 <meta property="og:image" content="http://yoursite.com/images/lamp/16.png">
 <meta property="og:image" content="http://yoursite.com/images/lamp/17.png">
-<meta property="og:updated_time" content="2019-10-09T18:40:59.432Z">
+<meta property="og:updated_time" content="2019-10-09T19:06:38.409Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在Ubuntu18.04架设LAMP服务器以及WordPress博客">
 <meta name="twitter:description" content="LAMP服务器简单介绍LAMP 是指一组通常一起使用来运行动态网站或者服务器的自由软件名称首字母缩写：  Linux - 操作系统 Apache -  网页服务器 Mysql - 数据库管理系统 PHP - 脚本语言">
@@ -329,7 +329,7 @@
 <h2 id="配置环境"><a href="#配置环境" class="headerlink" title="配置环境"></a>配置环境</h2><blockquote>
 <ul>
 <li><strong>系统版本</strong>：Ubuntu 18.04</li>
-<li><strong>Kernel</strong>：4.18-generic</li>
+<li><strong>Kernel</strong>：4.15.0-65-generic</li>
 </ul>
 </blockquote>
 <p>不同的操作系统LAMP的配置会略有不同，这篇文章以Ubuntu 18.04为例。安装时要注意版本。</p>
@@ -396,13 +396,13 @@
 <h2 id="添加数据库及相关权限"><a href="#添加数据库及相关权限" class="headerlink" title="添加数据库及相关权限"></a>添加数据库及相关权限</h2><p>在设置完phpMyAdmin之后，我们可以使用用户名为phpmyadmin来登录数据库后台，但是这个用户仅具有设置phpmyadmin数据库的相关操作的权限，并非我们创建博客使用的数据库的权限。因此，我们最好是使用root账号或者创建一个新用户来专门管理博客使用的数据库。</p>
 <p>在运行高于MySQL 5.7版本以上的Ubuntu系统上，root用户被设置成默认使用auth_socket而不是使用密码登录。这虽然在某些情况下更安全和更实用，但是对于使用外部程序管理数据库（比如phpMyAdmin）的软件来讲，却变得非常复杂。所以，为了能够使用root账号登录MySQL，我们需要把root用户的认证方式从auth_socket切换成mysql_native_password。</p>
 <h3 id="查看当前认证方式"><a href="#查看当前认证方式" class="headerlink" title="查看当前认证方式"></a>查看当前认证方式</h3><p>使用下列命令查看</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo mysql</span><br><span class="line"></span><br><span class="line"><span class="meta">mysql&gt;</span> SELECT user,authentication_string,plugin,host FROM mysql.user;</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo mysql</span><br><span class="line"></span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> SELECT user,authentication_string,plugin,host FROM mysql.user;</span></span><br></pre></td></tr></table></figure>
 
 <p>查看结果如下图所示：</p>
 <p><img src="/images/lamp/9.png" alt></p>
 <p>上图可看出，当前root用户的plugin使用的是auth_socket；</p>
 <h3 id="设置root用户密码并且换认证方式"><a href="#设置root用户密码并且换认证方式" class="headerlink" title="设置root用户密码并且换认证方式"></a>设置root用户密码并且换认证方式</h3><p>使用下面命令修改认证方式，并查看是否修改成功：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">mysql&gt;</span> ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';</span><br><span class="line"><span class="meta">mysql&gt;</span> FLUSH PRIVILEGES;</span><br><span class="line"><span class="meta">mysql&gt;</span> SELECT user,authentication_string,plugin,host FROM mysql.user;</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> ALTER USER <span class="string">'root'</span>@<span class="string">'localhost'</span> IDENTIFIED WITH mysql_native_password BY <span class="string">'password'</span>;</span></span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> FLUSH PRIVILEGES;</span></span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> SELECT user,authentication_string,plugin,host FROM mysql.user;</span></span><br></pre></td></tr></table></figure>
 
 <p>注：ALTER USER ‘root’@’localhost’ IDENTIFIED WITH mysql_native_password BY ‘password’中的password为root用户的密码，可根据自己需要设置。</p>
 <p><img src="/images/lamp/10.png" alt></p>
