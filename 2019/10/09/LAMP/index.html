@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="LAMP服务器简单介绍LAMP 是指一组通常一起使用来运行动态网站或者服务器的自由软件名称首字母缩写：  Linux - 操作系统 Apache -  网页服务器 Mysql - 数据库管理系统 PHP - 脚本语言">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在Ubuntu18.04架设LAMP服务器以及WordPress博客">
+<meta property="og:url" content="http://yoursite.com/2019/10/09/LAMP/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="LAMP服务器简单介绍LAMP 是指一组通常一起使用来运行动态网站或者服务器的自由软件名称首字母缩写：  Linux - 操作系统 Apache -  网页服务器 Mysql - 数据库管理系统 PHP - 脚本语言">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/images/lamp/1.png">
+<meta property="og:image" content="http://yoursite.com/images/lamp/2.png">
+<meta property="og:image" content="http://yoursite.com/images/lamp/3.png">
+<meta property="og:image" content="http://yoursite.com/images/lamp/4.png">
+<meta property="og:image" content="http://yoursite.com/images/lamp/5.png">
+<meta property="og:image" content="http://yoursite.com/images/lamp/6.png">
+<meta property="og:image" content="http://yoursite.com/images/lamp/7.png">
+<meta property="og:image" content="http://yoursite.com/images/lamp/8.png">
+<meta property="og:image" content="http://yoursite.com/images/lamp/9.png">
+<meta property="og:image" content="http://yoursite.com/images/lamp/10.png">
+<meta property="og:image" content="http://yoursite.com/images/lamp/11.png">
+<meta property="og:image" content="http://yoursite.com/images/lamp/12.png">
+<meta property="og:image" content="http://yoursite.com/images/lamp/13.png">
+<meta property="og:image" content="http://yoursite.com/images/lamp/14.png">
+<meta property="og:image" content="http://yoursite.com/images/lamp/15.png">
+<meta property="og:image" content="http://yoursite.com/images/lamp/16.png">
+<meta property="og:image" content="http://yoursite.com/images/lamp/17.png">
+<meta property="og:updated_time" content="2019-10-09T18:40:59.432Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="在Ubuntu18.04架设LAMP服务器以及WordPress博客">
+<meta name="twitter:description" content="LAMP服务器简单介绍LAMP 是指一组通常一起使用来运行动态网站或者服务器的自由软件名称首字母缩写：  Linux - 操作系统 Apache -  网页服务器 Mysql - 数据库管理系统 PHP - 脚本语言">
+<meta name="twitter:image" content="http://yoursite.com/images/lamp/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/10/09/LAMP/">
+
+
+
+
+
+  <title>在Ubuntu18.04架设LAMP服务器以及WordPress博客 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/09/LAMP/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Labee">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">在Ubuntu18.04架设LAMP服务器以及WordPress博客</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-09T17:20:53+02:00">
+                2019-10-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="LAMP服务器简单介绍"><a href="#LAMP服务器简单介绍" class="headerlink" title="LAMP服务器简单介绍"></a>LAMP服务器简单介绍</h1><p><strong>LAMP</strong> 是指一组通常一起使用来运行动态网站或者服务器的自由软件名称首字母缩写：</p>
+<ul>
+<li><strong>Linux</strong> - 操作系统</li>
+<li><strong>Apache</strong> -  网页服务器</li>
+<li><strong>Mysql</strong> - 数据库管理系统</li>
+<li><strong>PHP</strong> - 脚本语言  <a id="more"></a>
+
+</li>
+</ul>
+<h2 id="配置环境"><a href="#配置环境" class="headerlink" title="配置环境"></a>配置环境</h2><blockquote>
+<ul>
+<li><strong>系统版本</strong>：Ubuntu 18.04</li>
+<li><strong>Kernel</strong>：4.18-generic</li>
+</ul>
+</blockquote>
+<p>不同的操作系统LAMP的配置会略有不同，这篇文章以Ubuntu 18.04为例。安装时要注意版本。</p>
+<h2 id="软件安装列表"><a href="#软件安装列表" class="headerlink" title="软件安装列表"></a>软件安装列表</h2><p>以下是官方博客中提到的安装 <strong>WordPress</strong> 基本软件需求。</p>
+<blockquote>
+<ul>
+<li><strong>PHP 7.3 or greater</strong></li>
+<li><strong>MySQL 5.6 or greater OR MariaDB 10.0 or greater</strong></li>
+<li><strong>Nginx or Apache with mod_rewrite module</strong></li>
+<li><strong>HTTPS support</strong></li>
+</ul>
+</blockquote>
+<h3 id="安装Web服务器"><a href="#安装Web服务器" class="headerlink" title="安装Web服务器"></a>安装Web服务器</h3><p><strong>Apache2</strong> 是一个被广泛使用的Web服务器，它的作用就是相应浏览器的需求，将用户需要的页面提供给浏览器。其安装命令如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install apache2</span><br></pre></td></tr></table></figure>
+
+<p>安装完成之后，可以打开浏览器，测试 <strong>apache2</strong> 是否安装成功：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">localhost</span><br></pre></td></tr></table></figure>
+
+<p>如果从浏览器能看到下图，则说明安装成功。</p>
+<p><img src="/images/lamp/1.png" alt></p>
+<h3 id="安装MySQL"><a href="#安装MySQL" class="headerlink" title="安装MySQL"></a>安装MySQL</h3><p><strong>WordPress</strong> 的数据库使用 <strong>MySQL</strong> 来存储和操作。其安装方法如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install mysql-server</span><br></pre></td></tr></table></figure>
+
+<h3 id="安装PHP"><a href="#安装PHP" class="headerlink" title="安装PHP"></a>安装PHP</h3><p>由于 <strong>WordPress</strong> 是使用 <strong>PHP</strong> 来编写的博客框架，所以我们需要安装php相关的套件，以支持 <strong>WordPress</strong> 的运行。具体安装命令如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install php libapache2-mod-php php-mysql</span><br></pre></td></tr></table></figure>
+
+<h3 id="安装phpMyadmin"><a href="#安装phpMyadmin" class="headerlink" title="安装phpMyadmin"></a>安装phpMyadmin</h3><p><strong>phpMyadmin</strong> 是一个基于Web页面管理 <strong>MySQL</strong> 的工具，在其上面可以方便的建立、修改、删除数据库。其安装命令如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install phpmyadmin php-mbstring php-gettext</span><br></pre></td></tr></table></figure>
+
+<p>在安装过程中会弹出来下面窗口：</p>
+<p><img src="/images/lamp/2.png" alt></p>
+<p>此时，默认会选中apache2，应该按下空格键，apache2前面出现*，即选定apache2，然后按TAB，再按下回车键。这个步骤最终会在/etc/apache2/config-enable目录下创建phpmyadmin.conf文件。</p>
+<p>接下来会弹出来下面窗口：</p>
+<p><img src="/images/lamp/3.png" alt></p>
+<p>询问是否使用dbconfig-common来设置数据库，这里选择是.</p>
+<p>然后，会弹出下面的窗口，来设置数据库的密码：</p>
+<p><img src="/images/lamp/4.png" alt></p>
+<p>之后会再次弹出窗口确认密码：</p>
+<p><img src="/images/lamp/5.png" alt></p>
+<p>等待程序安装完成之后，使用下面的命令使能mbstring这个php扩展插件。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo phpenmod mbstring</span><br></pre></td></tr></table></figure>
+
+<p>然后使用下面的命令重启apache服务：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl restart apache2</span><br></pre></td></tr></table></figure>
+
+<p>这时，<strong>phpMyAdmin</strong> 已经成功安装了。在浏览器中输入</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">localhost/phpmyadmin/</span><br></pre></td></tr></table></figure>
+
+<p>可以看到下面的界面，使用账号：phpmyadmin和刚才输入的密码即可登陆。</p>
+<p><img src="/images/lamp/6.png" alt></p>
+<hr>
+<h1 id="WordPress简单介绍"><a href="#WordPress简单介绍" class="headerlink" title="WordPress简单介绍"></a>WordPress简单介绍</h1><p><strong>WordPress</strong> 是一个以PHP和MySQL为平台的自由开源的博客软件和内容管理系统。WordPress具有插件架构和模板系统，是最受欢迎的网站内容管理系统。如今，它被使用在超过7000万个站点上。</p>
+<h2 id="WordPress安装"><a href="#WordPress安装" class="headerlink" title="WordPress安装"></a>WordPress安装</h2><p>下面来安装 <strong>WordPress</strong>。</p>
+<h3 id="下载并解压WordPress"><a href="#下载并解压WordPress" class="headerlink" title="下载并解压WordPress"></a>下载并解压WordPress</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://wordpress.org/latest.tar.gz</span><br></pre></td></tr></table></figure>
+
+<p>由于在访问网站时，apache默认读取的是/var/www/html下的内容，因此，我们只需要把WordPress里解压出来的内容替换到这个目录下即可。注意，在安装apache时，默认在/var/www/html文件下生成了一个名为index.html的网页。而apache默认会优先读取它，所以在复制WordPress下的内容之前，应该先删除掉该文件.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo rm /var/www/html/index.html</span><br><span class="line">tar zxvf latest.tar.gz</span><br><span class="line">sudo cp -rf wordpress/* /var/www/html</span><br><span class="line">sudo chown -R www-data:www-data /var/www</span><br></pre></td></tr></table></figure>
+
+<p>完成上述操作后，博客已经部署完成，登录博客<a href="http://localhost/" target="_blank" rel="noopener">http://localhost/</a> 就可以看到下图:</p>
+<p><img src="/images/lamp/7.png" alt></p>
+<p>可以看出来第一次登录默认跳转到设置界面。选择你的博客后台默认语言（我选择的是简体中文），然后继续。则会看到下面的页面。</p>
+<p><img src="/images/lamp/8.png" alt></p>
+<p>这里是要填写博客的数据库等信息。</p>
+<h2 id="添加数据库及相关权限"><a href="#添加数据库及相关权限" class="headerlink" title="添加数据库及相关权限"></a>添加数据库及相关权限</h2><p>在设置完phpMyAdmin之后，我们可以使用用户名为phpmyadmin来登录数据库后台，但是这个用户仅具有设置phpmyadmin数据库的相关操作的权限，并非我们创建博客使用的数据库的权限。因此，我们最好是使用root账号或者创建一个新用户来专门管理博客使用的数据库。</p>
+<p>在运行高于MySQL 5.7版本以上的Ubuntu系统上，root用户被设置成默认使用auth_socket而不是使用密码登录。这虽然在某些情况下更安全和更实用，但是对于使用外部程序管理数据库（比如phpMyAdmin）的软件来讲，却变得非常复杂。所以，为了能够使用root账号登录MySQL，我们需要把root用户的认证方式从auth_socket切换成mysql_native_password。</p>
+<h3 id="查看当前认证方式"><a href="#查看当前认证方式" class="headerlink" title="查看当前认证方式"></a>查看当前认证方式</h3><p>使用下列命令查看</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo mysql</span><br><span class="line"></span><br><span class="line"><span class="meta">mysql&gt;</span> SELECT user,authentication_string,plugin,host FROM mysql.user;</span><br></pre></td></tr></table></figure>
+
+<p>查看结果如下图所示：</p>
+<p><img src="/images/lamp/9.png" alt></p>
+<p>上图可看出，当前root用户的plugin使用的是auth_socket；</p>
+<h3 id="设置root用户密码并且换认证方式"><a href="#设置root用户密码并且换认证方式" class="headerlink" title="设置root用户密码并且换认证方式"></a>设置root用户密码并且换认证方式</h3><p>使用下面命令修改认证方式，并查看是否修改成功：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">mysql&gt;</span> ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';</span><br><span class="line"><span class="meta">mysql&gt;</span> FLUSH PRIVILEGES;</span><br><span class="line"><span class="meta">mysql&gt;</span> SELECT user,authentication_string,plugin,host FROM mysql.user;</span><br></pre></td></tr></table></figure>
+
+<p>注：ALTER USER ‘root’@’localhost’ IDENTIFIED WITH mysql_native_password BY ‘password’中的password为root用户的密码，可根据自己需要设置。</p>
+<p><img src="/images/lamp/10.png" alt></p>
+<p>上图可以看出，已经修改成功。此时，我们就可以使用root账户可刚刚设置的密码来登录数据库的后台了。在浏览器中输入<a href="http://localhost/phpmyadmin/" target="_blank" rel="noopener">http://localhost/phpmyadmin/</a>, 登陆成功后，可以看到下面的页面：</p>
+<p><img src="/images/lamp/11.png" alt></p>
+<p>我们注意到左侧列表中的数据库比之前我们使用phpmyadmin账户登录后看到的数据库多了几个。这里可以看到使用命令行安装的phpMyAdmin版本为4.6.6。</p>
+<h3 id="为博客创建数据库"><a href="#为博客创建数据库" class="headerlink" title="为博客创建数据库"></a>为博客创建数据库</h3><p>1) 使用root登录phpMyAdmin，点击左上角的新建</p>
+<p>2) 输入数据库的名字（比如wordpress_DB），点击创建</p>
+<p><img src="/images/lamp/12.png" alt></p>
+<h3 id="继续完成安装博客"><a href="#继续完成安装博客" class="headerlink" title="继续完成安装博客"></a>继续完成安装博客</h3><ul>
+<li>填写数据库等信息。还记我们打开博客后显示的管理页面吗？点击现在就开始。再打开的页面中输入我们填的数据库名字。账户为之前提到的root，密码为当时设置的密码。后面两项默认即可。点击提交，现在安装。</li>
+</ul>
+<p><img src="/images/lamp/13.png" alt></p>
+<ul>
+<li>填写博客信息。</li>
+</ul>
+<p><img src="/images/lamp/14.png" alt></p>
+<ul>
+<li>“站点标题”、“用户名”和“密码”可以自己随意设置，“邮箱”填写自己可用的邮箱。点击安装WordPress。</li>
+</ul>
+<p><img src="/images/lamp/15.png" alt></p>
+<ul>
+<li>点击登录。使用刚才创建的博客后台账号密码登录。</li>
+</ul>
+<p><img src="/images/lamp/16.png" alt></p>
+<ul>
+<li>博客后台预览</li>
+</ul>
+<p><img src="/images/lamp/17.png" alt></p>
+<p>恭喜你，你的博客已经搭建OK。</p>
+<hr>
+<p>这篇安装教程整理自<a href="https://luomuxiaoxiao.com/?p=616" target="_blank" rel="noopener">这篇博客</a>。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10/09/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Labee</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#LAMP服务器简单介绍"><span class="nav-number">1.</span> <span class="nav-text">LAMP服务器简单介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#配置环境"><span class="nav-number">1.1.</span> <span class="nav-text">配置环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#软件安装列表"><span class="nav-number">1.2.</span> <span class="nav-text">软件安装列表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装Web服务器"><span class="nav-number">1.2.1.</span> <span class="nav-text">安装Web服务器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装MySQL"><span class="nav-number">1.2.2.</span> <span class="nav-text">安装MySQL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装PHP"><span class="nav-number">1.2.3.</span> <span class="nav-text">安装PHP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装phpMyadmin"><span class="nav-number">1.2.4.</span> <span class="nav-text">安装phpMyadmin</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WordPress简单介绍"><span class="nav-number">2.</span> <span class="nav-text">WordPress简单介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#WordPress安装"><span class="nav-number">2.1.</span> <span class="nav-text">WordPress安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#下载并解压WordPress"><span class="nav-number">2.1.1.</span> <span class="nav-text">下载并解压WordPress</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加数据库及相关权限"><span class="nav-number">2.2.</span> <span class="nav-text">添加数据库及相关权限</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#查看当前认证方式"><span class="nav-number">2.2.1.</span> <span class="nav-text">查看当前认证方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置root用户密码并且换认证方式"><span class="nav-number">2.2.2.</span> <span class="nav-text">设置root用户密码并且换认证方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为博客创建数据库"><span class="nav-number">2.2.3.</span> <span class="nav-text">为博客创建数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#继续完成安装博客"><span class="nav-number">2.2.4.</span> <span class="nav-text">继续完成安装博客</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Labee</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
